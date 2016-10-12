@@ -48,9 +48,7 @@ or
 
 so your SD_CARD will be /dev/sdc or /dev/sdb and 1st partition is /media/boot (kernel Image) and 2nd partition is /media/rootfs (kernel modules with OV5640)
 
-
-* type this structions in your linux box:
-
+type this structions in your linux box:
 
 	git clone https://github.com/avafinger/OV5640_camera
 	cd OV5640_camera
@@ -63,7 +61,6 @@ so your SD_CARD will be /dev/sdc or /dev/sdb and 1st partition is /media/boot (k
 	sync
 	tar -xvpzf kernel_rc1.tar.gz -C ./rootfs/lib/modules --numeric-ow
 	sync
-
 
 wait this to complete and only after this you unmount the SD_CARD
 
