@@ -26,16 +26,14 @@ In order to use OV5640 camera on BananaPi M64 and/or Pine64+ you need the follow
 
 How to load OV5640 manually
 ===========================
-- Unload any previous vfe device loaded
-
+Unload any previous vfe device loaded
 
 	sudo modprobe -r -f vfe_v4l2
 	sleep 2
 	sudo modprobe -r -f ov5640
 
 
-- Load the new improved OV5640
-
+Load the new improved OV5640
 
 	sudo modprobe ov5640
 	sleep 2
