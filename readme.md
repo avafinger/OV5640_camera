@@ -66,6 +66,12 @@ You need to load the correct driver (this latest ov5640) and make sure /dev/vide
 Check if you have all dependencies.
 
 
+tested on:
+==========
+- BananaPi M64
+- Pine64+
+
+NanoPi A64 (can possibly works, there is a great chance)
 
 History Log:
 * initial commit, missing info (yet to complete)
