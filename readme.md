@@ -22,7 +22,55 @@ In order to use OV5640 camera on BananaPi M64 and/or Pine64+ you need the follow
 
 - A Compiled Linux Device Tree (dtb) with OV5640 enabled
 - Ubuntu Xenial 16.04 arm64 (Desktop or server)
-- Enhanced OV5640 driver (A64) BananaPi M64 / Pine64+ Build with latest longsleep's kernel
+- Enhanced OV5640 driver (A64) BananaPi M64 / Pine64+ Build with latest longsleep's kernel (included)
+
+Steps you should take
+=====================
+You will need a linux box to update your current distro with the new kernel image and modules with OV5640.
+
+* Identify where your SD_CARD 
+
+
+	type df -lh
+
+
+You should see something like this:
+
+
+	/dev/sdc1        50M   24M   26M  48% /media/boot
+	/dev/sdc2        15G   12G  2.0G  87% /media/rootfs
+
+or
+
+	/dev/sdb1        50M   24M   26M  48% /media/boot
+	/dev/sdb2        15G   12G  2.0G  87% /media/rootfs
+
+
+so your SD_CARD will be /dev/sdc or /dev/sdb and 1st partition is /media/boot (kernel Image) and 2nd partition is /media/rootfs (kernel modules with OV5640)
+
+
+* type this structions in your linux box:
+
+
+	git clone https://github.com/avafinger/OV5640_camera
+	cd OV5640_camera
+	sudo su
+	mv /media/boot/pine64/Image /media/boot/pine64/Image_OK
+	sync
+	cp -v Image /media/boot/pine64/Image
+	mv /media/boot/pine64/sun50i-a64-pine64-plus.dtb /media/boot/pine64/sun50i-a64-pine64-plus.dtb_OK
+	cp -v sun50i-a64-pine64-plus.dtb /media/boot/pine64/sun50i-a64-pine64-plus.dtb
+	sync
+	tar -xvpzf kernel_rc1.tar.gz -C ./rootfs/lib/modules --numeric-ow
+	sync
+
+
+wait this to complete and only after this you unmount the SD_CARD
+
+* unmount the SD_CARD
+
+* insert your SD_CARD into BananaPi M64 / Pine64+ and boot, if everything is fine you will boot into your DISTRO and you are ready to start playing with the camera.
+
 
 How to load OV5640 manually
 ===========================
