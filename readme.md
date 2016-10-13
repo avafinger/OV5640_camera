@@ -18,20 +18,53 @@ Working window sizes and expected FPS (video mode)
 - QCIF: 176x144 (30 FPS with some artifacts)
 
 
-In order to use OV5640 camera on BananaPi M64 and/or Pine64+ you need the following:
+In order to use OV5640 camera on BananaPi M64 and/or Pine64+ you will need the following:
 
 - A Compiled Linux Device Tree (dtb) with OV5640 enabled
-- Ubuntu Xenial 16.04 arm64 (Desktop or server)
-- Enhanced OV5640 driver (A64) BananaPi M64 / Pine64+ Build with latest longsleep's kernel (included)
+- Ubuntu Xenial 16.04 arm64 or Debian Jessie with unbroken package (*) (Desktop or server)
+
+(*) What do you mean by broken distro/package? In general terms a broken Distro/Package have some different library version linked in 
+and put the distro in such a state you cannot fix it or if you fix one package you may break another and so one. You better get a good and clean image.
+
+You may end like so:
+
+	sudo apt-get install libopencv-dev python-opencv
+	Reading package lists... Done
+	Building dependency tree       
+	Reading state information... Done
+	Some packages could not be installed. This may mean that you have
+	requested an impossible situation or if you are using the unstable
+	distribution that some required packages have not yet been created
+	or been moved out of Incoming.
+	The following information may help to resolve the situation:
+	
+	The following packages have unmet dependencies:
+	 libopencv-dev : Depends: libopencv-objdetect-dev (= 2.4.9.1+dfsg-1.5ubuntu1) but it is not going to be installed
+	                 Depends: libopencv-highgui-dev (= 2.4.9.1+dfsg-1.5ubuntu1) but it is not going to be installed
+	                 Depends: libopencv-legacy-dev (= 2.4.9.1+dfsg-1.5ubuntu1) but it is not going to be installed
+	                 Depends: libopencv-contrib-dev (= 2.4.9.1+dfsg-1.5ubuntu1) but it is not going to be installed
+	                 Depends: libopencv-videostab-dev (= 2.4.9.1+dfsg-1.5ubuntu1) but it is not going to be installed
+	                 Depends: libopencv-superres-dev (= 2.4.9.1+dfsg-1.5ubuntu1) but it is not going to be installed
+	                 Depends: libopencv-ocl-dev (= 2.4.9.1+dfsg-1.5ubuntu1) but it is not going to be installed
+	                 Depends: libcv-dev (= 2.4.9.1+dfsg-1.5ubuntu1) but it is not going to be installed
+	                 Depends: libhighgui-dev (= 2.4.9.1+dfsg-1.5ubuntu1) but it is not going to be installed
+	                 Depends: libcvaux-dev (= 2.4.9.1+dfsg-1.5ubuntu1) but it is not going to be installed
+	E: Unable to correct problems, you have held broken packages.
+
+
+
+- Enhanced OV5640 driver (A64) BananaPi M64 / Pine64+ Build with latest longsleep's kernel (included here)
 
 Steps you should take
 =====================
 You will need a linux box to update your current distro with the new kernel image and modules with OV5640.
+You can also update the kernel with the new OV5640 driver manually from inside of your board without a second linux box but this instructions are out of the scope.
 
 * Identify where your SD_CARD 
 
+type:
 
-	type df -lh
+	 df -lh
 
 
 You should see something like this:
@@ -46,9 +79,26 @@ or
 	/dev/sdb2        15G   12G  2.0G  87% /media/rootfs
 
 
-so your SD_CARD will be /dev/sdc or /dev/sdb and 1st partition is /media/boot (kernel Image) and 2nd partition is /media/rootfs (kernel modules with OV5640)
+so your SD_CARD letter will have the following form: 
 
-type this structions in your linux box:
+	/dev/sdX 
+
+and can be /dev/sdb or /dev/sdc and 1st partition is /media/boot (kernel Image) and 2nd partition is /media/rootfs (kernel modules with OV5640).
+You could also find the correct /dev/SD_CARD by typing dmesg:
+
+	dmesg
+	
+
+output:
+
+	[18631.665749] sdc: detected capacity change from 15931539456 to 0
+	[19243.730508] sd 4:0:0:0: [sdc] 31116288 512-byte logical blocks: (15.9 GB/14.8 GiB)
+
+
+In some distro you could have /media/ubuntu/rootfs or /media/ubuntu/ROOTFS and is up to you to find the correct path.
+
+
+Type this structions in your linux box from command line:
 
 	git clone https://github.com/avafinger/OV5640_camera
 	cd OV5640_camera
@@ -62,8 +112,10 @@ type this structions in your linux box:
 	sync
 	tar -xvpzf kernel_ov5640.tar.gz -C /media/rootfs/lib/modules --numeric-ow
 	sync
+	tar -xvpzf linux-headers-3.10.102.tar.gz -C /media/rootfs/usr/src --numeric-ow
+	sync
 
-wait this to complete and only after this you unmount the SD_CARD
+wait untill complete and only after this you unmount the SD_CARD
 
 * unmount the SD_CARD
 
