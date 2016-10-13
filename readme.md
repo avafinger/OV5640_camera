@@ -95,13 +95,19 @@ default frame rate tries to use the best FPS possible. If you want better qualit
 Application to grab frames - v4l2 / OpenCV (works on Desktop or server)
 ======================================================================
 
+Install linux kernel headers before building cap
+
+
 	git clone https://github.com/avafinger/cap-v4l2
 	cd cap-v4l2
 	sudo ./install_deps.sh
-	./build_script.sh
+	./build_script_A64.sh
 	./cap 1920 1080 4 1 -999 -1 -1 (output will be frame_1920x1080.jpg)
 
-* you can also run a simple test ./test_ov5640.sh to grab all frames and display some FPS statistics
+
+
+you can also run a simple test ./test_ov5640.sh to grab all frames and display some FPS statistics
+
 
 Important
 =========
@@ -118,7 +124,7 @@ tested on:
 - BananaPi M64
 - Pine64+
 
-NanoPi A64 (can possibly works, there is a great chance)
+NanoPi A64 (can possibly works, there is a great chance - guessing)
 
 History Log:
 * initial commit, missing info (yet to complete)
