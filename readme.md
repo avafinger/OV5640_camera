@@ -55,6 +55,7 @@ type this structions in your linux box:
 	sudo su
 	mv /media/boot/pine64/Image /media/boot/pine64/Image_OK
 	sync
+	unzip Image_ov5640.zip
 	cp -v Image /media/boot/pine64/Image
 	mv /media/boot/pine64/sun50i-a64-pine64-plus.dtb /media/boot/pine64/sun50i-a64-pine64-plus.dtb_OK
 	cp -v sun50i-a64-pine64-plus.dtb /media/boot/pine64/sun50i-a64-pine64-plus.dtb
