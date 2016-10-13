@@ -60,7 +60,7 @@ type this structions in your linux box:
 	mv /media/boot/pine64/sun50i-a64-pine64-plus.dtb /media/boot/pine64/sun50i-a64-pine64-plus.dtb_OK
 	cp -v sun50i-a64-pine64-plus.dtb /media/boot/pine64/sun50i-a64-pine64-plus.dtb
 	sync
-	tar -xvpzf kernel_ov5640.tar.gz -C ./rootfs/lib/modules --numeric-ow
+	tar -xvpzf kernel_ov5640.tar.gz -C /media/rootfs/lib/modules --numeric-ow
 	sync
 
 wait this to complete and only after this you unmount the SD_CARD
