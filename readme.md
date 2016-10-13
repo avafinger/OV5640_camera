@@ -98,7 +98,7 @@ output:
 In some distro you could have /media/ubuntu/rootfs or /media/ubuntu/ROOTFS and is up to you to find the correct path.
 
 
-Type this structions in your linux box from command line:
+Type this instructions in your linux box from command line:
 
 	git clone https://github.com/avafinger/OV5640_camera
 	cd OV5640_camera
