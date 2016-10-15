@@ -103,6 +103,7 @@ Type this instructions in your linux box from command line:
 
 - Pine64+
 
+Xenial Image:
 
 	git clone https://github.com/avafinger/OV5640_camera
 	cd OV5640_camera
@@ -122,7 +123,7 @@ Type this instructions in your linux box from command line:
 
 - You could try using the MATE image from bpi-m64
 
-
+MATE image:
 	
 	git clone https://github.com/avafinger/OV5640_camera
 	cd OV5640_camera
