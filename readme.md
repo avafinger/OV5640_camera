@@ -58,7 +58,7 @@ You may end like so:
 Steps you should take
 =====================
 You will need a linux box to update your current distro with the new kernel image and modules with OV5640.
-You can also update the kernel with the new OV5640 driver manually from inside of your board without a second linux box but this instructions are out of the scope.
+You can also update kernel with the new OV5640 driver manually onboard without a second linux box but this instructions are out of the scope.
 
 * Identify where your SD_CARD 
 
@@ -96,9 +96,13 @@ output:
 
 
 In some distro you could have /media/ubuntu/rootfs or /media/ubuntu/ROOTFS and is up to you to find the correct path.
+bpi-M64 1st partition: /media/BPI-BOOT/bananapi/bpi-m64/linux
 
 
 Type this instructions in your linux box from command line:
+
+* Pine64+
+
 
 	git clone https://github.com/avafinger/OV5640_camera
 	cd OV5640_camera
@@ -113,6 +117,26 @@ Type this instructions in your linux box from command line:
 	tar -xvpzf kernel_ov5640.tar.gz -C /media/rootfs/lib/modules --numeric-ow
 	sync
 	tar -xvpzf linux-headers-3.10.102.tar.gz -C /media/rootfs/usr/src --numeric-ow
+	sync
+
+
+* You could try using the MATE image from bpi-m64
+
+
+	
+	git clone https://github.com/avafinger/OV5640_camera
+	cd OV5640_camera
+	sudo su
+	mv /media/BPI-BOOT/bananapi/bpi-m64/linux/Image /media/BPI-BOOT/bananapi/bpi-m64/linux/Image_OK
+	sync
+	unzip Image_ov5640.zip
+	cp -v Image /media/BPI-BOOT/bananapi/bpi-m64/linux/Image
+	mv /media/BPI-BOOT/bananapi/bpi-m64/linux/pine64-plus.dtb /media/BPI-BOOT/bananapi/bpi-m64/linux/pine64-plus.dtb_OK
+	cp -v sun50i-a64-pine64-plus.dtb /media/BPI-BOOT/bananapi/bpi-m64/linux/pine64-plus.dtb
+	sync
+	tar -xvpzf kernel_ov5640.tar.gz -C /media/BPI-ROOT/lib/modules --numeric-ow
+	sync
+	tar -xvpzf linux-headers-3.10.102.tar.gz -C /media/BPI-ROOT/usr/src --numeric-ow
 	sync
 
 wait untill complete and only after this you unmount the SD_CARD
