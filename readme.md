@@ -101,7 +101,7 @@ bpi-M64 1st partition: /media/BPI-BOOT/bananapi/bpi-m64/linux
 
 Type this instructions in your linux box from command line:
 
-* Pine64+
+- Pine64+
 
 
 	git clone https://github.com/avafinger/OV5640_camera
@@ -120,7 +120,7 @@ Type this instructions in your linux box from command line:
 	sync
 
 
-* You could try using the MATE image from bpi-m64
+- You could try using the MATE image from bpi-m64
 
 
 	
