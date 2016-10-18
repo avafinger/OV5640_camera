@@ -53,7 +53,9 @@ You may end like so:
 
 
 
-- Enhanced OV5640 driver (A64) BananaPi M64 / Pine64+ Build with latest longsleep's kernel (included here)
+- OV5640 enhanced driver (A64) BananaPi M64 / Pine64+ Build (included here)
+
+- If you can't get a working image, try Armbian (http://www.armbian.com/) and look for Pine64 image.
 
 Steps you should take
 =====================
